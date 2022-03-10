@@ -1,0 +1,68 @@
+1) Query: Create 5 different authors: Jane Austen, Emily Dickinson, Fyodor Dostoevsky, William Shakespeare, Lau Tzu
+
+INSERT INTO authors (name)
+VALUES ("Jane Austen"), ("Emily Dickinson"), ("Fyodor Dostoevsky"), ("William Shakespeare"), ("Lau Tzu");
+
+2) Query: Create 5 books with the following names: C Sharp, Java, Python, PHP, Ruby
+
+INSERT INTO books (title, num_of_pages)
+VALUES ("C Sharp", 8),("Java", 10), ("Python", 15), ("PHP", 30), ("Ruby", 20);
+
+3) Query: Change the name of the C Sharp book to C#
+
+UPDATE books 
+SET title = "C#"
+WHERE id = 1; 
+
+4) Query: Change the first name of the 4th author to Bill
+
+UPDATE authors 
+SET name = "Bill Shakespeare"
+WHERE idauthors = 4;
+
+5) Query: Have the first author favorite the first 2 books
+6) Query: Have the second author favorite the first 3 books
+7) Query: Have the third author favorite the first 4 books
+8) Query: Have the fourth author favorite all the books
+
+INSERT INTO favorites (author_id, book_id)
+VALUE (1,1), (1,2), (2,1), (2,2), (2,3), (3,1), (3,2), (3,3), (3,4), (4,1), (4,2), (4,3), (4,4), (4,5);
+
+9) Query: Retrieve all the authors who favorited the 3rd book
+
+
+SELECT * FROM books
+JOIN favorites on books.id = favorites.book_id
+JOIN authors on authors.id = favorites.author_id
+WHERE books.id = 3;
+
+10) Query: Remove the first author of the 3rd book's favorites
+
+DELETE from favorites 
+WHERE book_id = 3
+and author_id = 2;
+
+SELECT author_id from favorites
+WHERE book_id = 3 ORDER BY author_id LIMIT 1; 
+
+11) Query: Add the 5th author as an other who favorited the 2nd book
+
+INSERT INTO favorites (author_id, book_id)
+VALUE (5,2);
+
+12) Find all the books that the 3rd author favorited
+
+SELECT * FROM authors
+JOIN favorites on authors.id = favorites.author_id
+JOIN books on books.id = favorites.book_id
+WHERE authors.id = 3;
+
+13) Query: Find all the authors that favorited to the 5th book
+
+SELECT * FROM books
+JOIN favorites on books.id = favorites.book_id 
+JOIN authors on authors.id = favorites.author_id 
+WHERE books.id = 5;
+
+
+14) Submit your .txt file that contains all the queries you ran in the workbench
